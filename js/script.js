@@ -28,6 +28,7 @@ let currentElement = null;
 let currentTimer = timer;
 let myVar;
 let yourAnswers= [];
+let tresc_diva= '';
 
 fetch('https://quiztai.herokuapp.com/api/quiz')
     .then(resp => resp.json())
@@ -35,15 +36,44 @@ fetch('https://quiztai.herokuapp.com/api/quiz')
         preQuestions = resp;
 
 
+        function show(){
+            preQuestions.forEach(function (value,key){
+                console.log(key)
+                tresc_diva = tresc_diva +
+                    '<ul class="list-group mb-5">'+
+                    '<li class="list-group-item list-group-item-warning resultQuestion">'+ value.question +'</li>';
+                if(value.answers[0] === value.correct_answer && yourAnswers[key] !== "0") tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-success result">'+value.answers[0]+'</li>';
+                if(value.answers[0] !== value.correct_answer && value.answers[0] !==  yourAnswers[key]  || yourAnswers[key] === "0"  ) tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-dark result">'+value.answers[0]+'</li>';
+                if(value.answers[0] ===  yourAnswers[key] && value.answers[0] !== value.correct_answer ) tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-danger result">'+value.answers[0]+'</li>';
+                if(value.answers[1] === value.correct_answer && yourAnswers[key] !== "0") tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-success  result">'+value.answers[1]+'</li>';
+                if(value.answers[1] !== value.correct_answer && value.answers[1] !==  yourAnswers[key] || yourAnswers[key] === "0" ) tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-dark result">'+value.answers[1]+'</li>';
+                if(value.answers[1] ===  yourAnswers[key] && value.answers[1] !== value.correct_answer ) tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-danger result">'+value.answers[1]+'</li>';
+                        if(value.answers.length === 2)  tresc_diva = tresc_diva + '</ul>';
+                if(value.answers[2] === value.correct_answer && value.answers.length > 2 && yourAnswers[key] !== "0") tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-success result">'+value.answers[2]+'</li>';
+                if(value.answers[2] !== value.correct_answer && value.answers[2] !==  yourAnswers[key] && value.answers.length > 2 || yourAnswers[key] === "0" ) tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-dark result">'+value.answers[2]+'</li>';
+                if(value.answers[2] ===  yourAnswers[key] && value.answers[2] !== value.correct_answer ) tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-danger result">'+value.answers[2]+'</li>';
+                if(value.answers[3] === value.correct_answer  && value.answers.length > 2 && yourAnswers[key] !== "0") tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-success result">'+value.answers[3]+'</li>'+ '</ul>';;
+                if(value.answers[3] !== value.correct_answer && value.answers[3] !==  yourAnswers[key] && value.answers.length > 2 || yourAnswers[key] === "0" ) tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-dark result">'+value.answers[3]+'</li>'+ '</ul>';
+                if(value.answers[3] ===  yourAnswers[key]  && value.answers[3] !== value.correct_answer) tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-danger result">'+value.answers[3]+'</li>'+ '</ul>';
+            })
 
-        preQuestions.forEach(function (value,key){
-            console.log(value,key)
-            resultQuestion.innerHTML = value.question;
-            result[0].innerHTML= value.answers[0];
-            result[1].innerHTML= value.answers[1];
-            result[2].innerHTML= value.answers[2];
-            result[3].innerHTML= value.answers[3];
-        })
+            yourResults.innerHTML = tresc_diva;
+
+        }
+
+
 
 
         startButton.addEventListener('click', function () {
@@ -55,7 +85,7 @@ fetch('https://quiztai.herokuapp.com/api/quiz')
 
         function next() {
             if (index+1 >= preQuestions.length) {
-            console.log("koniec")
+                show();
                 clearInterval(myVar);
                 cleanMark();
                 //TODO
@@ -186,6 +216,7 @@ fetch('https://quiztai.herokuapp.com/api/quiz')
         }
 
         restart.addEventListener('click', function (event) {
+            yourResults.innerHTML = '';
             event.preventDefault();
             index = 0;
             points = 0;
