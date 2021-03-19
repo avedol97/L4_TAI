@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8e40321-88d6-44d8-8b32-93806be2c370" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/L4_TAI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz.html" beforeDir="false" afterPath="$PROJECT_DIR$/quiz.html" afterDir="false" />
@@ -15,6 +13,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="quiz-task" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1pqREVw53TfeKqKF10SDV2fR65e" />
@@ -38,7 +41,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1615908528041</updated>
-      <workItem from="1615908529829" duration="14694000" />
+      <workItem from="1615908529829" duration="15974000" />
+      <workItem from="1616152435302" duration="182000" />
+      <workItem from="1616163776959" duration="1458000" />
     </task>
     <servers />
   </component>

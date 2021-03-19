@@ -1,7 +1,6 @@
 let next = document.querySelector('.next');
 let previous = document.querySelector('.previous')
 let indexed = document.querySelector('#index');
-let start = document.querySelector('.start');
 
 let question = document.querySelector('.question');
 let answers = document.querySelectorAll('.list-group-item');
@@ -16,18 +15,15 @@ let restart = document.querySelector('.restart');
 let index = 0;
 let points = 0;
 let currentElement = null;
-let listPoints = [];
 let counter = 0;
 let averageValue = 0;
-
 
 fetch('https://quiztai.herokuapp.com/api/quiz')
     .then(resp => resp.json())
     .then(resp => {
         preQuestions = resp;
-        // kod wykorzystujący preQuestions  <-
 
-
+setQuestion(index);
 
 function cleanMark(){
     if(currentElement !== null){
@@ -58,9 +54,7 @@ function activateAnswers(){
     }
 }
 
-
 function doAction(event) {
-    //event.target - Zwraca referencję do elementu, do którego zdarzenie zostało pierwotnie wysłane.
     if (event.target.innerHTML === preQuestions[index].correct_answer) {
         points++;
         pointsElem.innerText = points;
@@ -73,6 +67,7 @@ function doAction(event) {
 }
 
 function setQuestion(index){
+    activateAnswers();
     indexed.innerText = index+1;
     question.innerHTML = preQuestions[index].question;
 
@@ -90,18 +85,9 @@ function setQuestion(index){
     }
 }
 
-start.addEventListener('click',function (){
-    setQuestion(index);
-    activateAnswers();
-    start.style.display = 'none';
-    next.style.display= 'inline';
-    previous.style.display= 'inline';
-})
 
 next.addEventListener('click', function () {
     index++;
-
-
     if (index >= preQuestions.length) {
 
         if(localStorage.getItem("average") === null){
@@ -131,15 +117,20 @@ next.addEventListener('click', function () {
         userScorePoint.innerHTML = points;
     } else {
         setQuestion(index);
-        activateAnswers();
         cleanMark();
     }
 });
 
 
 previous.addEventListener('click',function (){
+    if(index <= 0){
+        index=0;
+        return;
+    }
     index--;
-    setQuestion(index)
+    setQuestion(index);
+    cleanMark();
+    disableAnswers();
 })
 
 restart.addEventListener('click', function (event) {
