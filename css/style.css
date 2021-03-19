@@ -1,10 +1,6 @@
-body {
+body{
     width: 100%;
-    font-size: 14px;
-}
-
-.container {
-    margin-top: 50px;
+    height: 100%;
 }
 
 .list-group-item {
@@ -22,3 +18,62 @@ body {
 .buttons {
     padding: 10px 10px 10px 0;
 }
+
+.list{
+    margin-top: 100px;
+    align-items: center;
+    font-family: sans-serif;
+    height: 500px;
+    width: 800px;
+    display: none;
+    background-color:  #fffae6;
+}
+
+
+.start {
+    margin-left: 300px;
+    color: white;
+    background-color: #ffcc00;
+    font-size: 200px;
+    font-family: sans-serif;
+    width: auto;
+    height: auto;
+    position: relative;
+}
+.start:before,
+.start:after
+{
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 25px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #777;
+    -webkit-box-shadow: 0 35px 20px #777;
+    -moz-box-shadow: 0 35px 20px #777;
+    box-shadow: 0 35px 20px #777;
+    -webkit-transform: rotate(-8deg);
+    -moz-transform: rotate(-8deg);
+    -o-transform: rotate(-8deg);
+    -ms-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+}
+.start:after
+{
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -o-transform: rotate(8deg);
+    -ms-transform: rotate(8deg);
+    transform: rotate(8deg);
+    right: 10px;
+    left: auto;
+}
+.startQuiz {
+    height: 100%;
+    width: 100%;
+    background-color:  #fffae6;
+}
+

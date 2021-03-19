@@ -15,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="quiz-task" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,7 +43,7 @@
       <updated>1615908528041</updated>
       <workItem from="1615908529829" duration="15974000" />
       <workItem from="1616152435302" duration="182000" />
-      <workItem from="1616163776959" duration="1458000" />
+      <workItem from="1616163776959" duration="20465000" />
     </task>
     <servers />
   </component>

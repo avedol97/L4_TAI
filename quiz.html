@@ -9,15 +9,20 @@
 </head>
 <body>
 
-<div class="navbar">
+<div class="navbar"></div>
 
+<div class="startQuiz">
+    <button class="btn start">Start Quiz</button>
 </div>
 
-
 <div class="container list">
-    Question:<span id="index"></span> <h4 class="question"></h4>
 
-    Answers:
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped setBar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
+    Question:<span id="index"></span> <h4 class="question mt-4 mb-5 text-center"></h4>
+
     <ul class="list-group">
         <li class="list-group-item"></li>
         <li class="list-group-item"></li>
@@ -25,12 +30,7 @@
         <li class="list-group-item"></li>
     </ul>
 
-    <div class="buttons">
-        <button class="btn btn-danger previous">Previous</button>
-        <button class="btn btn-success next">Next</button>
-    </div>
-
-    <h4>Your score: <span class="score">0</span>/20 points.</h4>
+    <h4 class="mt-5 text-center">Your score: <span class="score ">0</span>/20 points.</h4>
 </div>
 <div class="container results" style="display: none">
     <div class="btn-group-custom">
@@ -56,6 +56,16 @@
     </div>
 </div>
 
+
+<div class="container yourResults">
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-warning resultQuestion">Question :</li>
+        <li class="list-group-item list-group-item-dark result">Answer1</li>
+        <li class="list-group-item list-group-item-dark result">Answer2</li>
+        <li class="list-group-item list-group-item-dark result">Answer3</li>
+        <li class="list-group-item list-group-item-dark result">Answer4</li>
+    </ul>
+</div>
 
 <script src="js/script.js"></script>
 </body>
