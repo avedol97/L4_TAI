@@ -3,9 +3,9 @@ let indexed = document.querySelector('#index');
 let question = document.querySelector('.question');
 let answers = document.querySelectorAll('.list-group-item');
 
-let resultQuestion = document.querySelector('.resultQuestion');
+let questBox = document.querySelector('.questBox');
 let yourResults = document.querySelector('.yourResults');
-let result = document.querySelectorAll('.result');
+let questContainer = document.querySelector('.questContainer');
 
 let list = document.querySelector('.list');
 
@@ -29,6 +29,7 @@ let currentTimer = timer;
 let myVar;
 let yourAnswers= [];
 let tresc_diva= '';
+let tresc_diva2= '';
 
 fetch('https://quiztai.herokuapp.com/api/quiz')
     .then(resp => resp.json())
@@ -36,13 +37,40 @@ fetch('https://quiztai.herokuapp.com/api/quiz')
         preQuestions = resp;
 
 
+        function colorQuestBox (truly) {
+            for(i=1;i<=20;i++) {
+                const element = "lit" + i;
+                if( truly === 1){
+                    document.getElementById('lit1').style.background = "#ffcc00";
+                    document.getElementById(element).style.background = "#ffcc00";
+                }
+                if(index+1 === i){
+                    if(truly === 0){
+                        document.getElementById(element).style.background = "#7FFF00";
+                    }
+                    else{
+                        document.getElementById(element).style.background = "#DC143C";
+                    }
+                }
+                }
+        }
+        function addQuestBox(){
+            for(i=1;i<=20;i++){
+                const element = "lit" + i;
+                console.log(element)
+                tresc_diva2 = tresc_diva2 +
+                    '<div class="col myCol" id="'+element+'">'+i+'</div>';
+            }
+
+            questBox.innerHTML = tresc_diva2;
+        }
+
+
         function show(){
             preQuestions.forEach(function (value,key){
-                console.log(key)
                 tresc_diva = tresc_diva +
                     '<ul class="list-group mb-5">'+
-                    '<li class="list-group-item list-group-item-warning resultQuestion">'+ value.question +'</li>';
-                if(value.answers[0] === value.correct_answer && yourAnswers[key] !== "0") tresc_diva = tresc_diva +
+                    '<li class="list-group-item list-group-item-warning resultQuestion">'+ value.question +'</li>';if(value.answers[0] === value.correct_answer && yourAnswers[key] !== "0") tresc_diva = tresc_diva +
                     '<li class="list-group-item list-group-item-success result">'+value.answers[0]+'</li>';
                 if(value.answers[0] !== value.correct_answer && value.answers[0] !==  yourAnswers[key]  || yourAnswers[key] === "0"  ) tresc_diva = tresc_diva +
                     '<li class="list-group-item list-group-item-dark result">'+value.answers[0]+'</li>';
@@ -74,12 +102,12 @@ fetch('https://quiztai.herokuapp.com/api/quiz')
         }
 
 
-
-
         startButton.addEventListener('click', function () {
             start.style.display = "none";
             list.style.display = 'block';
+            addQuestBox()
             loadNextQuestion()
+            questContainer.style.display = "block"
         })
 
 
@@ -87,6 +115,7 @@ fetch('https://quiztai.herokuapp.com/api/quiz')
             if (index+1 >= preQuestions.length) {
                 show();
                 clearInterval(myVar);
+                questContainer.style.display = 'none'
                 cleanMark();
                 //TODO
                 list.style.display = 'none';
@@ -108,9 +137,6 @@ fetch('https://quiztai.herokuapp.com/api/quiz')
                         averageValue = (parseFloat(localAverage) + points) / counter
                         localStorage.setItem("average", averageValue.toString())
                         average.innerText = averageValue
-                        console.log(counter)
-                        console.log(localAverage)
-                        console.log(points)
                     }
                     // localStorage.removeItem("points")
                     // localStorage.removeItem("average")
@@ -182,11 +208,13 @@ fetch('https://quiztai.herokuapp.com/api/quiz')
                 points++;
                 pointsElem.innerText = points;
                 markCorrect(event.target);
+                colorQuestBox(0)
             } else {
                 markInCorrect(event.target);
+                colorQuestBox(2);
+
             }
             yourAnswers.push(event.target.innerHTML)
-            console.log(yourAnswers);
             disableAnswers();
             next();
         }
@@ -225,6 +253,9 @@ fetch('https://quiztai.herokuapp.com/api/quiz')
             loadNextQuestion()
             list.style.display = 'block';
             results.style.display = 'none';
+            questContainer.style.display = "block"
+            colorQuestBox(1);
+
         });
 
 
