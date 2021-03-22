@@ -34,7 +34,7 @@ let tresc_diva2= '';
 fetch('https://quiztai.herokuapp.com/api/quiz')
     .then(resp => resp.json())
     .then(resp => {
-        preQuestions = resp;
+        let preQuestions = resp.sort(() => Math.random() - 0.5);
 
 
         function colorQuestBox (truly) {
